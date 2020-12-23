@@ -3,9 +3,10 @@
 pragma solidity >=0.5.16 <0.8.0;
 
 contract LaundererDetector {
-    address[] private launderers;
+    address[] private potential_launderers;
     address[] private transactors;
-    uint private amountLaunder;
+    address[] private hugeTransactors;
+    uint[] private amountHuge;
     uint private threshold = 10**18;
     uint private maxSave = 50**18;
     // event LogDepositMade(address indexed accountAddress, uint amount);
@@ -15,6 +16,7 @@ contract LaundererDetector {
         require(address(this).balance >= amount);
         msg.sender.transfer(amount);
         transactors.push(msg.sender);
+
         // emit LogWithdrawMade(msg.sender, amount);
     }
 
@@ -22,8 +24,11 @@ contract LaundererDetector {
         require(msg.value == amount);
         transactors.push(msg.sender);
 
-        if(amount > threshold)
-            launderers.push(msg.sender);        
+        if(amount > threshold){
+            hugeTransactors.push(msg.sender);
+            amountHuge.push(amount);
+        }
+                    
         // emit LogDepositMade(msg.sender, amount);
     }
 
@@ -39,10 +44,14 @@ contract LaundererDetector {
         threshold = newthreshold;
     }
 
-    function checkLaunderers() public returns (address[] memory) {
+    function potentialLaunderers() public returns (address[] memory) {
         if(address(this).balance > maxSave)
-            launderers = transactors;
+            potential_launderers = transactors;
         
-        return launderers;
+        return potential_launderers;
+    }
+
+    function getHugeTransactors() public view returns (address[] memory, uint[] memory) {
+        return (hugeTransactors, amountHuge);
     }
 }
