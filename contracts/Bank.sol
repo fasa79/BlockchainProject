@@ -9,15 +9,15 @@ contract LaundererDetector {
     uint[] private amountHuge;
     uint private threshold = 10**18;
     uint private maxSave = 50**18;
-    // event LogDepositMade(address indexed accountAddress, uint amount);
-    // event LogWithdrawMade(address indexed accountAddress, uint amount);
+    event LogDepositMade(address indexed accountAddress, uint amount);
+    event LogWithdrawMade(address indexed accountAddress, uint amount);
     
     function withdraw(uint256 amount) public {       
         require(address(this).balance >= amount);
         msg.sender.transfer(amount);
         transactors.push(msg.sender);
 
-        // emit LogWithdrawMade(msg.sender, amount);
+        emit LogWithdrawMade(msg.sender, amount);
     }
 
     function deposit(uint256 amount) public payable {
@@ -29,7 +29,7 @@ contract LaundererDetector {
             amountHuge.push(amount);
         }
                     
-        // emit LogDepositMade(msg.sender, amount);
+        emit LogDepositMade(msg.sender, amount);
     }
 
     function getBalance() public view returns (uint256) {
