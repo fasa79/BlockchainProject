@@ -307,3 +307,5 @@
 [2020/12/30 21:22:35.289] - eth_getTransactionCount
 [2020/12/30 21:22:35.305] - eth_getBalance
 [2020/12/30 21:22:35.327] - eth_getTransactionCount
+[2020/12/30 22:44:13.059] - eth_unsubscribe
+[2020/12/30 22:44:13.061] - eth_unsubscribe

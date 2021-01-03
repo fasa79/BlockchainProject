@@ -12,6 +12,17 @@ contract LaundererDetector {
     event LogDepositMade(address indexed accountAddress, uint amount);
     event LogWithdrawMade(address indexed accountAddress, uint amount);
     
+    address bankNegara;
+    
+    modifier onlyBankNegara(){
+        require(msg.sender == bankNegara);
+        _;
+    }
+    
+    constructor() {
+        bankNegara = msg.sender;
+    }
+    
     function withdraw(uint256 amount) public {       
         require(address(this).balance >= amount);
         msg.sender.transfer(amount);
@@ -36,22 +47,22 @@ contract LaundererDetector {
         return address(this).balance;
     }
 
-    function getThreshold() public view returns (uint) {
+    function getThreshold() public onlyBankNegara view returns (uint) {
         return threshold / (1**18);
     }
 
-    function setThreshold(uint256 newthreshold) public {
+    function setThreshold(uint256 newthreshold) public onlyBankNegara {
         threshold = newthreshold;
     }
 
-    function potentialLaunderers() public returns (address[] memory) {
+    function potentialLaunderers() public onlyBankNegara returns (address[] memory) {
         if(address(this).balance > maxSave)
             potential_launderers = transactors;
         
         return potential_launderers;
     }
 
-    function getHugeTransactors() public view returns (address[] memory, uint[] memory) {
+    function getHugeTransactors() public onlyBankNegara view returns (address[] memory, uint[] memory) {
         return (hugeTransactors, amountHuge);
     }
 }
