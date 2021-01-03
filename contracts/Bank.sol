@@ -9,6 +9,7 @@ contract LaundererDetector {
     uint[] private amountHuge;
     uint private threshold = 10**18;
     uint private maxSave = 50**18;
+    uint accBalance;
     event LogDepositMade(address indexed accountAddress, uint amount);
     event LogWithdrawMade(address indexed accountAddress, uint amount);
     
@@ -21,6 +22,7 @@ contract LaundererDetector {
     
     constructor() {
         bankNegara = msg.sender;
+        accBalance = address(this).balance;
     }
     
     function withdraw(uint256 amount) public {       
@@ -32,10 +34,12 @@ contract LaundererDetector {
     }
 
     function deposit(uint256 amount) public payable {
-        require(msg.value == amount);
+        // require(msg.value == amount);
         transactors.push(msg.sender);
+        
+        accBalance += amount;
 
-        if(amount > threshold){
+        if(amount > 100){
             hugeTransactors.push(msg.sender);
             amountHuge.push(amount);
         }
@@ -44,7 +48,7 @@ contract LaundererDetector {
     }
 
     function getBalance() public view returns (uint256) {
-        return address(this).balance;
+        return accBalance;
     }
 
     function getThreshold() public onlyBankNegara view returns (uint) {
