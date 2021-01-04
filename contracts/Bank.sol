@@ -9,46 +9,53 @@ contract LaundererDetector {
     uint[] private amountHuge;
     uint private threshold = 10**18;
     uint private maxSave = 50**18;
-    uint accBalance;
+    uint8 private ownerCount;
+    
     event LogDepositMade(address indexed accountAddress, uint amount);
     event LogWithdrawMade(address indexed accountAddress, uint amount);
+    mapping (address => uint256) public accBalance;
     
     address bankNegara;
     
     modifier onlyBankNegara(){
         require(msg.sender == bankNegara);
         _;
+        
     }
     
-    constructor() {
+    constructor() payable {
         bankNegara = msg.sender;
-        accBalance = address(this).balance;
+        ownerCount = 0;
+        // accBalance = address(this).balance;
+        
     }
     
     function withdraw(uint256 amount) public {       
-        require(address(this).balance >= amount);
+        require(accBalance[msg.sender] >= amount, "Insufficient Balance");
         msg.sender.transfer(amount);
         transactors.push(msg.sender);
+        accBalance[msg.sender] -= amount;
 
         emit LogWithdrawMade(msg.sender, amount);
     }
 
-    function deposit(uint256 amount) public payable {
+    function deposit() public payable {
         // require(msg.value == amount);
         transactors.push(msg.sender);
         
-        accBalance += amount;
+        accBalance[msg.sender] += msg.value;
 
-        if(amount > 100){
+        if(msg.value > threshold){
             hugeTransactors.push(msg.sender);
-            amountHuge.push(amount);
+            amountHuge.push(msg.value);
         }
                     
-        emit LogDepositMade(msg.sender, amount);
+        emit LogDepositMade(msg.sender, msg.value);
     }
 
     function getBalance() public view returns (uint256) {
-        return accBalance;
+        // return address(this).balance;
+        return accBalance[msg.sender];
     }
 
     function getThreshold() public onlyBankNegara view returns (uint) {
@@ -59,9 +66,13 @@ contract LaundererDetector {
         threshold = newthreshold;
     }
 
-    function potentialLaunderers() public onlyBankNegara returns (address[] memory) {
-        if(address(this).balance > maxSave)
-            potential_launderers = transactors;
+    function potentialLaunderers() public  {
+        if(accBalance[msg.sender] > maxSave)
+            potential_launderers.push(msg.sender);
+        
+    }
+    
+    function getpotentialLaunderers() public onlyBankNegara view returns (address[] memory) {
         
         return potential_launderers;
     }
@@ -69,4 +80,9 @@ contract LaundererDetector {
     function getHugeTransactors() public onlyBankNegara view returns (address[] memory, uint[] memory) {
         return (hugeTransactors, amountHuge);
     }
+    
+    function getTransactors() public view returns (address[] memory) {
+        return transactors;
+    }
+    
 }
