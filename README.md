@@ -20,7 +20,7 @@
     ```
 
 4. Test the smart contract with both good behaviour and potential laundering transactions.
-```javascript
+    ```javascript
     test
     ```
 **NOTE**: This project is only for our Blockchain and Application Part 1
