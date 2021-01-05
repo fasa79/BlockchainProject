@@ -24,3 +24,4 @@
     test
     ```
 **NOTE**: This project is only for our Blockchain and Application Part 1
+**AUTHOR**: FADHLUDDIN BIN SAHLAN (1817445) & FAEEZ ZIMAM BIN FEIZAL (1819541)
