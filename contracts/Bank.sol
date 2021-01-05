@@ -20,16 +20,16 @@ contract LaundererDetector {
         emit LogWithdrawMade(msg.sender, amount);
     }
 
-    function deposit(uint256 amount) public payable {
-        require(msg.value == amount);
+    function deposit() public payable {
+        //require(msg.value == amount);
         transactors.push(msg.sender);
 
-        if(amount > threshold){
+        if(msg.value > threshold){
             hugeTransactors.push(msg.sender);
-            amountHuge.push(amount);
+            amountHuge.push(msg.value);
         }
                     
-        emit LogDepositMade(msg.sender, amount);
+        emit LogDepositMade(msg.sender, msg.value);
     }
 
     function getBalance() public view returns (uint256) {
@@ -44,13 +44,16 @@ contract LaundererDetector {
         threshold = newthreshold;
     }
 
-    function potentialLaunderers() public returns (address[] memory) {
+    function potentialLaunderers() public  {
         if(address(this).balance > maxSave)
             potential_launderers = transactors;
         
+    }
+    
+    function getPotentialLaunderer() public view returns (address[] memory){
         return potential_launderers;
     }
-
+    
     function getHugeTransactors() public view returns (address[] memory, uint[] memory) {
         return (hugeTransactors, amountHuge);
     }
