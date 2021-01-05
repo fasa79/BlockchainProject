@@ -38,7 +38,7 @@ contract("GOOD DAY BEHAVIOUR", function(accounts){
    it("Check the balance if more than threshold and display potential launderers", async() =>{
       const bank = await LaundererDetector.deployed();
 
-      let potential_launderers = await bank.getpotentialLaunderers();
+      let potential_launderers = await bank.getPotentialLaunderer();
 
       console.log(potential_launderers);
    });
@@ -77,7 +77,7 @@ contract("POSSIBLE MONEY LAUNDERING (DEPOSITS EXCEED THRESHOLD)", function(accou
    it("Check the balance if more than threshold and display potential launderers", async() =>{
       const bank = await LaundererDetector.deployed();
 
-      let potential_launderers = await bank.getpotentialLaunderers();
+      let potential_launderers = await bank.getPotentialLaunderer();
 
       console.log(potential_launderers);
    });
@@ -135,7 +135,7 @@ contract("POSSIBLE MONEY LAUNDERING (SMART CONTRACT BALANCE EXCEED THRESHOLD)", 
    it("Check the balance if more than threshold and display potential launderers", async() =>{
       const bank = await LaundererDetector.deployed();
 
-      let potential_launderers = await bank.getpotentialLaunderers();
+      let potential_launderers = await bank.getPotentialLaunderer();
 
       console.log(potential_launderers);
    });

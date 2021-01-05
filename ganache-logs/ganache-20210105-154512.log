@@ -1245,3 +1245,5 @@
 [2021/01/05 16:10:52.614] - eth_getTransactionReceipt
 [2021/01/05 16:10:52.663] - eth_getBlockByNumber
 [2021/01/05 16:10:52.688] - eth_getTransactionReceipt
+[2021/01/05 16:15:22.454] - eth_unsubscribe
+[2021/01/05 16:15:22.456] - eth_unsubscribe
