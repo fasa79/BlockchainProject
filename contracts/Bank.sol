@@ -90,9 +90,10 @@ contract LaundererDetector {
     function getHugeTransactors() public onlyBankNegara view returns (address[] memory, uint[] memory) {
         return (hugeTransactors, amountHuge);
     }
-    
+
     function getTransactors() public view returns (address[] memory) {
         return transactors;
     }
+    
     
 }
