@@ -98,7 +98,7 @@ contract("POSSIBLE MONEY LAUNDERING (SMART CONTRACT BALANCE EXCEED THRESHOLD)", 
       bank.deposit({from: accounts[1], value: 9 * 10**18});
    });
 
-   it("WITHDRAW 8 ether from account 2", async () => {
+   it("WITHDRAW 8 ether to account 2", async () => {
       const bank = await LaundererDetector.deployed();
       bank.withdraw(8, {from: accounts[2]});
    });
@@ -113,7 +113,7 @@ contract("POSSIBLE MONEY LAUNDERING (SMART CONTRACT BALANCE EXCEED THRESHOLD)", 
       bank.deposit({from: accounts[1], value: 25 * 10**18});
    });
 
-   it("WITHDRAW 2 ether from account 2", async () => {
+   it("WITHDRAW 2 ether to account 2", async () => {
       const bank = await LaundererDetector.deployed();
       bank.withdraw(2, {from: accounts[2]});
    });
