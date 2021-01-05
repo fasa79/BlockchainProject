@@ -23,7 +23,7 @@ contract LaundererDetector {
         
     }
     
-    constructor() payable {
+    constructor() public payable {
         bankNegara = msg.sender;
         ownerCount = 0;
         // accBalance = address(this).balance;
