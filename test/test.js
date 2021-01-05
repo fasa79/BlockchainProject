@@ -14,15 +14,131 @@ const LaundererDetector = artifacts.require("LaundererDetector");
 
 contract("Proper deposits", function(accounts){
 
-   before(async () => {
-      const bank = await LaundererDetector.deployed();
-   });
-
-   it("Proper Deposit", async () => {
+   it("5 ether from account 1", async () => {
       const bank = await LaundererDetector.deployed();
       bank.deposit({from: accounts[1], value: 5 * 10**18});
+   });
 
-      const scBalance = bank.getBalance();
+   it("5 ether from account 2", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[2], value: 5 * 10**18});
+   });
+
+   it("Check for transaction more than threshold", async() =>{
+      const bank = await LaundererDetector.deployed();
+
+      let hugeTransactors, amountHuge = await bank.getHugeTransactors();
+      
+         console.log(hugeTransactors);
+         console.log(amountHuge);
+   });
+
+   it("Check the balance if more than threshold and display potential launderers", async() =>{
+      const bank = await LaundererDetector.deployed();
+
+      let potential_launderers = await bank.getPotentialLaunderer();
+
+      console.log(potential_launderers);
+   });
+   
+   it("Smart Contract Balance", async() =>{
+      const bank = await LaundererDetector.deployed();
+      
+      let scBalance = await bank.getBalance();
+      scBalance = Number(scBalance);
+      
+      console.log(scBalance);
+   });
+});
+
+contract("Not proper deposits", function(accounts){
+
+   it("15 ether from account 3", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[3], value: 15 * 10**18});
+   });
+
+   it("15 ether from account 4", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[4], value: 15 * 10**18});
+   });
+
+   it("Check for transaction more than threshold", async() =>{
+      const bank = await LaundererDetector.deployed();
+
+      let hugeTransactors, amountHuge = await bank.getHugeTransactors();
+         
+      console.log(hugeTransactors);
+      console.log(amountHuge);
+   });
+
+   it("Check the balance if more than threshold and display potential launderers", async() =>{
+      const bank = await LaundererDetector.deployed();
+
+      let potential_launderers = await bank.getPotentialLaunderer();
+
+      console.log(potential_launderers);
+   });
+
+   it("Smart Contract Balance", async() =>{
+      const bank = await LaundererDetector.deployed();
+      
+      let scBalance = await bank.getBalance();
+      scBalance = Number(scBalance);
+      
+      console.log(scBalance);
+   });
+});
+
+contract("Smart Contract balance more than balance threshold", function(accounts){
+   it("5 ether from account 1", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[1], value: 5 * 10**18});
+   });
+
+   it("5 ether from account 2", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[2], value: 5 * 10**18});
+   });
+
+   it("15 ether from account 3", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[3], value: 15 * 10**18});
+   });
+
+   it("15 ether from account 4", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[4], value: 15 * 10**18});
+   });
+
+   it("15 ether from account 5", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[5], value: 15 * 10**18});
+   });
+
+   it("Check for transaction more than threshold", async() =>{
+      const bank = await LaundererDetector.deployed();
+
+      let hugeTransactors, amountHuge = await bank.getHugeTransactors();
+         
+      console.log(hugeTransactors);
+      console.log(amountHuge);
+   });
+
+   it("Check the balance if more than threshold and display potential launderers", async() =>{
+      const bank = await LaundererDetector.deployed();
+
+      let potential_launderers = await bank.getPotentialLaunderer();
+
+      console.log(potential_launderers);
+   });
+
+   it("Smart Contract Balance", async() =>{
+      const bank = await LaundererDetector.deployed();
+      
+      let scBalance = await bank.getBalance();
+      scBalance = Number(scBalance);
+      
       console.log(scBalance);
    });
 });
