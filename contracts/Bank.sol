@@ -31,7 +31,7 @@ contract LaundererDetector {
     }
     
     function withdraw(uint256 amount) public {       
-        require(accBalance[msg.sender] >= amount, "Insufficient Balance");
+        require(address(this).balance >= amount, "Insufficient Balance");
         msg.sender.transfer(amount);
         transactors.push(msg.sender);
         accBalance[msg.sender] -= amount;
@@ -54,6 +54,11 @@ contract LaundererDetector {
     }
 
     function getBalance() public view returns (uint256) {
+        return address(this).balance;
+        // return accBalance[msg.sender];
+    }
+    
+    function getAccountAmount() public view returns (uint256) {
         // return address(this).balance;
         return accBalance[msg.sender];
     }
@@ -67,14 +72,15 @@ contract LaundererDetector {
     }
 
     function potentialLaunderers() public  {
-        if(accBalance[msg.sender] > maxSave)
-            potential_launderers.push(msg.sender);
-        
+        if(address(this).balance > maxSave){
+            for (uint i=0; i < 5; i += 1) {
+                potential_launderers[i] = transactors[i];
+            }
+        }
     }
     
     function getpotentialLaunderers() public onlyBankNegara view returns (address[] memory) {
-        
-        return potential_launderers;
+            return transactors;
     }
 
     function getHugeTransactors() public onlyBankNegara view returns (address[] memory, uint[] memory) {

@@ -6633,12 +6633,13 @@
         }
       },
       "links": {},
-      "address": "0x96D6DE9D88f5747e19c9AFd91288BdA674528238",
-      "transactionHash": "0xb7607ae504bc0332d234e54d39c29fc0e1a18c0c52ae452d82ac94527a6e7c8c"
+      "address": "0x05c24129c65557d0c6236bC4FB417177567494CC",
+      "transactionHash": "0x7d0b6fe5fbfca5a0c0d4cd63c4bcaf5ed8a39f44ce595b5f184986cab947dbc6"
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-04T15:37:15.133Z",
+  "updatedAt": "2021-01-05T03:14:16.101Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
