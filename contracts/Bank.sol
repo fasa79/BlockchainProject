@@ -31,12 +31,12 @@ contract LaundererDetector {
     }
     
     function withdraw(uint256 amount) public {       
-        require(address(this).balance >= amount, "Insufficient Balance");
-        msg.sender.transfer(amount);
+        require(address(this).balance >= amount* 1 ether, "Insufficient Balance");
+        msg.sender.transfer(amount * 1 ether);
         transactors.push(msg.sender);
-        accBalance[msg.sender] -= amount;
+        accBalance[msg.sender] -= amount* 1 ether;
 
-        emit LogWithdrawMade(msg.sender, amount);
+        emit LogWithdrawMade(msg.sender, amount* 1 ether);
     }
 
     function deposit() public payable {

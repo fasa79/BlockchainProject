@@ -14,14 +14,14 @@
 
 const LaundererDetector = artifacts.require("LaundererDetector");
 
-contract("Proper deposits", function(accounts){
+contract("GOOD DAY BEHAVIOUR", function(accounts){
 
-   it("5 ether from account 1", async () => {
+   it("DEPOSIT 5 ether from account 1", async () => {
       const bank = await LaundererDetector.deployed();
       bank.deposit({from: accounts[1], value: 5 * 10**18});
    });
 
-   it("5 ether from account 2", async () => {
+   it("DEPOSIT 5 ether from account 2", async () => {
       const bank = await LaundererDetector.deployed();
       bank.deposit({from: accounts[2], value: 5 * 10**18});
    });
@@ -53,14 +53,14 @@ contract("Proper deposits", function(accounts){
    });
 });
 
-contract("Not proper deposits", function(accounts){
+contract("POSSIBLE MONEY LAUNDERING (DEPOSITS EXCEED THRESHOLD)", function(accounts){
 
-   it("15 ether from account 3", async () => {
+   it("DEPOSIT 15 ether from account 3", async () => {
       const bank = await LaundererDetector.deployed();
       bank.deposit({from: accounts[3], value: 15 * 10**18});
    });
 
-   it("15 ether from account 4", async () => {
+   it("DEPOSIT 15 ether from account 4", async () => {
       const bank = await LaundererDetector.deployed();
       bank.deposit({from: accounts[4], value: 15 * 10**18});
    });
@@ -92,30 +92,35 @@ contract("Not proper deposits", function(accounts){
    });
 });
 
-contract("Smart Contract balance more than balance threshold", function(accounts){
-   it("5 ether from account 1", async () => {
+contract("POSSIBLE MONEY LAUNDERING (SMART CONTRACT BALANCE EXCEED THRESHOLD)", function(accounts){
+   it("DEPOSIT 9 ether from account 1", async () => {
       const bank = await LaundererDetector.deployed();
-      bank.deposit({from: accounts[1], value: 5 * 10**18});
+      bank.deposit({from: accounts[1], value: 9 * 10**18});
    });
 
-   it("5 ether from account 2", async () => {
+   it("WITHDRAW 8 ether from account 2", async () => {
       const bank = await LaundererDetector.deployed();
-      bank.deposit({from: accounts[2], value: 5 * 10**18});
+      bank.withdraw(8, {from: accounts[2]});
    });
 
-   it("15 ether from account 3", async () => {
+   it("DEPOSIT 6 ether from account 2", async () => {
       const bank = await LaundererDetector.deployed();
-      bank.deposit({from: accounts[3], value: 15 * 10**18});
+      bank.deposit({from: accounts[2], value: 6 * 10**18});
    });
 
-   it("15 ether from account 4", async () => {
+   it("DEPOSIT 25 ether from account 1", async () => {
       const bank = await LaundererDetector.deployed();
-      bank.deposit({from: accounts[4], value: 15 * 10**18});
+      bank.deposit({from: accounts[1], value: 25 * 10**18});
    });
 
-   it("15 ether from account 5", async () => {
+   it("WITHDRAW 2 ether from account 2", async () => {
       const bank = await LaundererDetector.deployed();
-      bank.deposit({from: accounts[5], value: 15 * 10**18});
+      bank.withdraw(2, {from: accounts[2]});
+   });
+
+   it("DEPOSIT 30 ether from account 3", async () => {
+      const bank = await LaundererDetector.deployed();
+      bank.deposit({from: accounts[3], value: 30 * 10**18});
    });
 
    it("Check for transaction more than threshold", async() =>{
