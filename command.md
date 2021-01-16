@@ -10,5 +10,10 @@ $ web3.eth.getAccounts().then(function(result) { accounts=result })
 
 BN to number
 
-$var balance = app.getBalance()
+$ var balance = app.getBalance()
 $ balance.then(result => result.toString())
+
+
+To run Static Server
+
+$ static-server
