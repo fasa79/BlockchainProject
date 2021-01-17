@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="src/img/logo_BNM.png">
-    <title>Home</title>
+    <title>Bank Negara Area</title>
 
     <!-- Bootstrap -->
     <link href="src/css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +52,7 @@
         </div>
         <div class="col-md-2"></div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-6">
           <p>Current Balance in Smart Contract : <b id="sc-balance"> </b><b>ether</b></p>
@@ -60,26 +60,22 @@
         <div class="col-md-6"></div>
       </div>
       <div class="row">
-        
-        <div class="col-md-4">
-          <label >Enter amount to deposit : </label>
-          <input type="text" class="form-control"><br>
-          <button class="btn btn-primary">Deposit</button>
+        <div class="alert alert-danger" role="alert">
+          Your account is ineligible to do that!
         </div>
-      
-        <div class="col-md-8"></div>
       </div>
-      <br>
-      <div class="row">
-        <div class="col-md-4">
-          <label for="">Enter amount to withdraw : </label>
-          <input type="text" class="form-control"><br>
-          <button class="btn btn-primary">Withdraw</button>
+      
+        <div class="col-md-6">
+            <hr>
+            <button class="btn btn-danger"> Check High Transactors</button>
+            <p id="high-transact"> Account 1 : 0xssf23453d1dw3 </p> 
         </div>
-        <div class="col-md-8"></div>
-      </div>
-      <hr>
-      
+        <div class="col-md-6">
+            <hr>
+            <button class="btn btn-warning"> Check Potential Launderers</button>
+            <p id="potential-launder"> Account 1 : 0xssf23453d1dw3 </p>
+          
+        </div>
       <br><br>
     </div>
 
