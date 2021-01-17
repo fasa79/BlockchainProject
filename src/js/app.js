@@ -37,16 +37,16 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('Adoption.json', function(data) {
+    $.getJSON('LaundererDetector.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with @truffle/contract
-      var AdoptionArtifact = data;
-      App.contracts.Adoption = TruffleContract(AdoptionArtifact);
+      var LaundererArtifact = data;
+      App.contracts.LaundererDetector = TruffleContract(LaundererArtifact);
     
       // Set the provider for our contract
-      App.contracts.Adoption.setProvider(App.web3Provider);
+      App.contracts.LaundererDetector.setProvider(App.web3Provider);
     
       // Use our contract to retrieve and mark the adopted pets
-      return App.markAdopted();
+      // return App.markAdopted();
     });
 
     return App.bindEvents();
@@ -56,50 +56,50 @@ App = {
     $(document).on('click', '.btn-adopt', App.handleAdopt);
   },
 
-  markAdopted: function() {
-    var adoptionInstance;
+  // markAdopted: function() {
+  //   var adoptionInstance;
 
-    App.contracts.Adoption.deployed().then(function(instance) {
-      adoptionInstance = instance;
+  //   App.contracts.Adoption.deployed().then(function(instance) {
+  //     adoptionInstance = instance;
 
-      return adoptionInstance.getAdopters.call();
-    }).then(function(adopters) {
-      for (i = 0; i < adopters.length; i++) {
-        if (adopters[i] !== '0x0000000000000000000000000000000000000000') {
-          $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
-        }
-      }
-    }).catch(function(err) {
-      console.log(err.message);
-    });
-  },
+  //     return adoptionInstance.getAdopters.call();
+  //   }).then(function(adopters) {
+  //     for (i = 0; i < adopters.length; i++) {
+  //       if (adopters[i] !== '0x0000000000000000000000000000000000000000') {
+  //         $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
+  //       }
+  //     }
+  //   }).catch(function(err) {
+  //     console.log(err.message);
+  //   });
+  // },
 
-  handleAdopt: function(event) {
-    event.preventDefault();
+  // handleAdopt: function(event) {
+  //   event.preventDefault();
 
-    var petId = parseInt($(event.target).data('id'));
+  //   var petId = parseInt($(event.target).data('id'));
 
-    var adoptionInstance;
+  //   var adoptionInstance;
 
-    web3.eth.getAccounts(function(error, accounts) {
-      if (error) {
-        console.log(error);
-      }
+  //   web3.eth.getAccounts(function(error, accounts) {
+  //     if (error) {
+  //       console.log(error);
+  //     }
 
-      var account = accounts[0];
+  //     var account = accounts[0];
 
-      App.contracts.Adoption.deployed().then(function(instance) {
-        adoptionInstance = instance;
+  //     App.contracts.Adoption.deployed().then(function(instance) {
+  //       adoptionInstance = instance;
 
-        // Execute adopt as a transaction by sending account
-        return adoptionInstance.adopt(petId, {from: account});
-      }).then(function(result) {
-        return App.markAdopted();
-      }).catch(function(err) {
-        console.log(err.message);
-      });
-    });
-  }
+  //       // Execute adopt as a transaction by sending account
+  //       return adoptionInstance.adopt(petId, {from: account});
+  //     }).then(function(result) {
+  //       return App.markAdopted();
+  //     }).catch(function(err) {
+  //       console.log(err.message);
+  //     });
+  //   });
+  // }
 
 };
 
