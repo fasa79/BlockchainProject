@@ -82,7 +82,7 @@ App = {
     event.preventDefault();
     
     var LDInstance;
-    var amount = parseInt($('#amt-deposit').val());
+    var amount = parseFloat($('#amt-deposit').val());
     
     web3.eth.getAccounts(function(error, accounts) {
     if (error) {
@@ -107,7 +107,8 @@ App = {
     
     
     var LDInstance;
-    var amount = parseInt($('#amt-withdraw').val());
+    var amount = parseFloat($('#amt-withdraw').val());
+    // amount *= 10 ** 18;
     
     web3.eth.getAccounts(function(error, accounts) {
     if (error) {
@@ -155,7 +156,7 @@ App = {
           var hugeAddr = hugeTransactAdress[0][i];
           var hugeAmm = hugeTransactAdress[1][i];
 
-          hugeAmm = parseInt(hugeAmm);
+          hugeAmm = parseFloat(hugeAmm);
           hugeAmm /= 10 ** 18;
 
           var hugeTag = document.createElement('tr');
