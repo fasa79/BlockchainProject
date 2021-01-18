@@ -23,10 +23,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" aria-current="page" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="bankarea.html">Bank Negara Area</a>
+              <a class="nav-link  active" href="bankarea.html">Bank Negara Area</a>
             </li>
             
           </ul>
@@ -55,24 +55,36 @@
 
       <div class="row">
         <div class="col-md-6">
-          <p>Current Balance in Smart Contract : <b id="sc-balance"> </b><b>ether</b></p>
+          <p>Current Balance in Smart Contract : <b id="sc-balance"> </b><b> ether</b></p>
+          <button class="btn btn-info" id="btn-getBalance">Get Balance</button>
         </div>
         <div class="col-md-6"></div>
       </div>
-      <div class="row">
-        <div class="alert alert-danger" role="alert">
+      <br>
+      <div class="row" id="error-div">
+        <!-- <div class="alert alert-danger" role="alert">
           Your account is ineligible to do that!
-        </div>
+        </div> -->
       </div>
       
         <div class="col-md-6">
             <hr>
-            <button class="btn btn-danger"> Check High Transactors</button>
-            <p id="high-transact"> Account 1 : 0xssf23453d1dw3 </p> 
+            <button class="btn btn-danger" id="btn-checkHigh"> Check High Transactors</button>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Account Address</th>
+                  <th scope="col">Transaction Amount (ether)</th>
+                </tr>
+              </thead>
+              <tbody id="tableHuge">
+              </tbody>
+            </table> 
         </div>
         <div class="col-md-6">
             <hr>
-            <button class="btn btn-warning"> Check Potential Launderers</button>
+            <button class="btn btn-warning" id="btn-checkLaund"> Check Potential Launderers</button>
             <p id="potential-launder"> Account 1 : 0xssf23453d1dw3 </p>
           
         </div>
