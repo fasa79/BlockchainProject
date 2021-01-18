@@ -54,21 +54,19 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
           <p>Current Balance in Smart Contract : <b id="sc-balance"> </b><b> ether</b></p>
           <button class="btn btn-info" id="btn-getBalance">Get Balance</button>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-4"></div>
       </div>
       <br>
       <div class="row" id="error-div">
-        <!-- <div class="alert alert-danger" role="alert">
-          Your account is ineligible to do that!
-        </div> -->
+        
       </div>
       
-        <div class="col-md-6">
-            <hr>
+        <div class="col-md-8">
+            
             <button class="btn btn-danger" id="btn-checkHigh"> Check High Transactors</button>
             <table class="table">
               <thead>
@@ -82,10 +80,19 @@
               </tbody>
             </table> 
         </div>
-        <div class="col-md-6">
-            <hr>
+        <div class="col-md-8">
+            
             <button class="btn btn-warning" id="btn-checkLaund"> Check Potential Launderers</button>
-            <p id="potential-launder"> Account 1 : 0xssf23453d1dw3 </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Account Address</th>
+                </tr>
+              </thead>
+              <tbody id="tablePotential">
+              </tbody>
+            </table>
           
         </div>
       <br><br>

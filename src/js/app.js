@@ -180,7 +180,50 @@ App = {
   },
 
   handlePotentialLaunderers: function(event) {
+    event.preventDefault();
+    
+    var LDInstance;
+    var potentialLaundAddress;
+    
+    web3.eth.getAccounts(function(error, accounts) {
+    if (error) {
+      console.log(error);
+    }
+      var account = accounts[0];
 
+      App.contracts.LaundererDetector.deployed().then(function(instance) {
+        LDInstance = instance;
+
+        potentialLaundAddress = LDInstance.getpotentialLaunderers({from: account});
+
+        return LDInstance.getpotentialLaunderers.call();
+      }).then(function(potentialLaundAddress) {
+        
+        var tablePotential = document.getElementById("tablePotential");
+
+        for (i = 0; i < potentialLaundAddress.length; i++) {
+      
+          var potentialTag = document.createElement('tr');
+          potentialTag.innerHTML = "<td>" + (i+1) + "</td><td>" + potentialLaundAddress[i] + "</td><td>";
+  
+          tablePotential.appendChild(potentialTag);
+        }
+
+        // console.table(potentialLaundAddress);
+
+
+      }).catch(function(err) {
+
+          var errorDiv = document.getElementById("error-div");
+          var errorTag = document.createElement('div');
+
+          errorTag.setAttribute('class', 'alert alert-danger');
+          errorTag.innerHTML = "Your Account is ineligible to do that!"
+        
+          errorDiv.appendChild(errorTag);
+          // console.log(err.message);
+      });
+    });
   }
 
   // bindEvents: function() {
