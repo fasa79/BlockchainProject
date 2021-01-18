@@ -12,8 +12,8 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
         <a class="navbar-brand" href="index.html">
           <img src="src/img/logo_BNM.png" width="90" height="60" class="d-inline-block align-top" alt="">
         </a>
@@ -45,56 +45,82 @@
             <div class="col-md-4"></div>
           </div>
           <br>
-          <h1 class="text-center">Welcome to Smart Contract to Detect Crypto Launderers</h1>
-          <h3 class="text-center">By Bank Negara Malaysia</h3>
-          <hr>
+          <h1 class="text-center">Bank Negara Area</h1>
+          <h5 class="text-center">This page is intended for Bank Negara only</h5>
+          <br>
+          <p class="text-center">**Bank Negara account is the account used to deploy the smart contract</p>
+          
           <br/>
         </div>
         <div class="col-md-2"></div>
       </div>
-
+      <hr>
       <div class="row">
+        <div class="col-md-4"><h1>BALANCE</h1></div>
         <div class="col-md-8">
           <p>Current Balance in Smart Contract : <b id="sc-balance"> </b><b> ether</b></p>
-          <button class="btn btn-info" id="btn-getBalance">Get Balance</button>
+          <button class="btn btn-success" id="btn-getBalance">Get Balance</button>
         </div>
-        <div class="col-md-4"></div>
       </div>
       <br>
-      <div class="row" id="error-div">
+      <hr>
+      <div class="row">
+        <div class="col-md-4"> <h1>THRESHOLD</h1></div>
+        <div class="col-md-8">
+          <p>Current Threshold : <b id="get-threshold"> </b><b> ether</b></p>
+          <button class="btn btn-primary" id="btn-getThresh">Get Threshold</button>
+          <br><br>
+          <label >Enter new threshold amount : </label>
+          <input type="text" class="form-control" id="amt-threshold"><br>
+          
+          <button class="btn btn-primary" id="btn-setThresh">Set Threshold</button>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <br>
+      
+      <div class="row">
+        <div class="row" id="error-div"></div>
+        <div class="col-md-4"><h1>CHECK ALERT</h1></div>
+        <div class="col-md-8"> 
+          <button class="btn btn-danger" id="btn-checkHigh"> Check High Transactors</button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Account Address</th>
+                <th scope="col">Transaction Amount (ether)</th>
+              </tr>
+            </thead>
+            <tbody id="tableHuge">
+            </tbody>
+          </table> 
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            
+          <button class="btn btn-warning" id="btn-checkLaund"> Check Potential Launderers</button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Account Address</th>
+              </tr>
+            </thead>
+            <tbody id="tablePotential">
+            </tbody>
+          </table>
         
+        </div>
       </div>
       
-        <div class="col-md-8">
-            
-            <button class="btn btn-danger" id="btn-checkHigh"> Check High Transactors</button>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Account Address</th>
-                  <th scope="col">Transaction Amount (ether)</th>
-                </tr>
-              </thead>
-              <tbody id="tableHuge">
-              </tbody>
-            </table> 
-        </div>
-        <div class="col-md-8">
-            
-            <button class="btn btn-warning" id="btn-checkLaund"> Check Potential Launderers</button>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Account Address</th>
-                </tr>
-              </thead>
-              <tbody id="tablePotential">
-              </tbody>
-            </table>
-          
-        </div>
+      <br>
+      <hr>
+        
       <br><br>
     </div>
 

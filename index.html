@@ -12,8 +12,8 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
         <a class="navbar-brand" href="index.html">
           <img src="src/img/logo_BNM.png" width="90" height="60" class="d-inline-block align-top" alt="">
         </a>
@@ -47,40 +47,50 @@
           <br>
           <h1 class="text-center">Welcome to Smart Contract to Detect Crypto Launderers</h1>
           <h3 class="text-center">By Bank Negara Malaysia</h3>
-          <hr>
-          <br/>
+          
         </div>
         <div class="col-md-2"></div>
       </div>
-      
-      <div class="row">
-        <div class="col-md-6">
-          <p>Current Balance in Smart Contract : <b id="sc-balance"> </b><b> ether</b></p>
-          <button class="btn btn-info" id="btn-getBalance">Get Balance</button>
-        </div>
-        <div class="col-md-6"></div>
-      </div>
-      <div class="row">
-        
-        <div class="col-md-4">
-          <label >Enter amount to deposit : </label>
-          <input type="text" class="form-control" id="amt-deposit"><br>
-          <button class="btn btn-primary" id="btn-deposit">Deposit</button>
-        </div>
-      
-        <div class="col-md-8"></div>
-      </div>
+      <br>
+      <hr>
       <br>
       <div class="row">
-        <div class="col-md-4">
-          <label for="">Enter amount to withdraw : </label>
+        <div class="col-md-4"><h1>BALANCE</h1></div>
+        <div class="col-md-8">
+          <p>Current Balance in Smart Contract : <b id="sc-balance"> </b><b> ether</b></p>
+          <button class="btn btn-success" id="btn-getBalance">Get Balance</button>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <br>
+      <hr>
+      <br>
+      <div class="row">
+        <div class="col-md-4"><h1>DEPOSIT</h1></div>
+        <div class="col-md-6">
+          <label >Enter amount to deposit (ether) : </label>
+          <input type="text" class="form-control" id="amt-deposit"><br>
+          <button class="btn btn-primary" id="btn-deposit">Deposit</button>
+          <br><br>
+          <small>**A metamask window will be prompted after you click the deposit button. If not, please make sure your account is connected to metamask</small>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <br>
+      <div class="row">
+        <div class="col-md-4"><h1>WITHDRAW</h1></div>
+        <div class="col-md-6">
+          <label for="">Enter amount to withdraw (ether) : </label>
           <input type="text" class="form-control" id="amt-withdraw"><br>
           <button class="btn btn-primary" id="btn-withdraw">Withdraw</button>
+          <br><br>
+          <small>**A metamask window will be prompted after you click the withdraw button. If not, please make sure your account is connected to metamask</small>
         </div>
-        <div class="col-md-8"></div>
+        
       </div>
+      <br>
       <hr>
-      
       <br><br>
     </div>
 
