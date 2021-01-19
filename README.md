@@ -32,7 +32,7 @@
 
 5. Install static server globally.
     ```javascript
-    npm -g install static-server
+    npm install -g static-server
     ```
 
 6. Run the DApp
