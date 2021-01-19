@@ -43,19 +43,24 @@
 
 1. Do I need to install Metamask extension?
 
-    Ans: Yes, as Metamask will be used for all the transactions and transaction fee (gas price).
+    **Answer** : Yes, as Metamask will be used for all the transactions and transaction fee (gas price) in the web. Make sure your account is connected to Metamask.
 
-2. Do I need to run Ganache after running Truffle?
+2. Do I need to run Ganache?
 
-    Ans: Yes, it's recommended to run Ganache so you can monitor the accounts to be used for transaction. Private key string of the account to be used with metamask also can be retrieved from Ganache
+    **Answer** : You should run and setup Ganache before running `$ truffle migrate` . Thus, it's recommended to run Ganache so you can monitor the accounts used for transaction. 
+
 
 3. What is the port used to run the Smart Contract (SC)?
 
-    Ans: The smart contract should be deployed at http://127.0.0.1:9545 . Make sure the the Truffle, Ganache and Metamask are connected to the same port.
-    
+    **Answer** : The smart contract should be deployed at http://127.0.0.1:9545 . Make sure the the Truffle, Ganache and Metamask are connected to the same port.
 
+4. How do I connect account to Metamask?
+
+    **Answer** : Open your Ganache, pick any account you wish and get the private key string. Go to Metamask extension and click import account. Paste the private key string. Your account and balance should appear.
 
     
-**NOTE**: This project is only for our Blockchain and Application Part 1.
+## Declaimers
+
+**NOTE**: This github repository is for both Blockchain and Application Part 1 and Part 2.
 
 **AUTHOR**: FADHLUDDIN BIN SAHLAN (1817445) & FAEEZ ZIMAM BIN FEIZAL (1819541)
