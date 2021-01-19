@@ -31,6 +31,14 @@
 ## Run the DApp
 
 5. Install static server globally.
+    ```javascript
+    npm -g install static-server
+    ```
 
+6. Run the DApp
+    ```javascript
+    static-server
+    ```
+    
 **NOTE**: This project is only for our Blockchain and Application Part 1
 **AUTHOR**: FADHLUDDIN BIN SAHLAN (1817445) & FAEEZ ZIMAM BIN FEIZAL (1819541)
