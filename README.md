@@ -59,7 +59,7 @@
     **Answer** : Open your Ganache, pick any account you wish and get the private key string. Go to Metamask extension and click import account. Paste the private key string. Your account and balance should appear.
 
     
-## Declaimers
+## Disclaimers
 
 **NOTE**: This github repository is for both Blockchain and Application Part 1 and Part 2.
 
