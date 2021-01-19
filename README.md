@@ -39,6 +39,22 @@
     ```javascript
     static-server
     ```
+## FAQ
+
+1. Do I need to install Metamask extension?
+
+    Ans: Yes, as Metamask will be used for all the transactions and transaction fee (gas price).
+
+2. Do I need to run Ganache after running Truffle?
+
+    Ans: Yes, it's recommended to run Ganache so you can monitor the accounts to be used for transaction. Private key string of the account to be used with metamask also can be retrieved from Ganache
+
+3. What is the port used to run the Smart Contract (SC)?
+
+    Ans: The smart contract should be deployed at http://127.0.0.1:9545 . Make sure the the Truffle, Ganache and Metamask are connected to the same port.
+    
+
+
     
 **NOTE**: This project is only for our Blockchain and Application Part 1.
 
