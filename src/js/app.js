@@ -58,6 +58,8 @@ App = {
     $(document).on('click', '#btn-withdraw', App.handleWithdraw);
     $(document).on('click', '#btn-checkHigh', App.handleHighTransactors);
     $(document).on('click', '#btn-checkLaund', App.handlePotentialLaunderers);
+    $(document).on('click', '#btn-getThresh', App.updateThreshold);
+    $(document).on('click', '#btn-setThresh', App.handleThreshold);
   },
 
   updateBalance: function() {
@@ -75,8 +77,6 @@ App = {
       console.log(err.message);
     });
   },
-
-  
 
   handleDeposit: function(event) {
     event.preventDefault();
@@ -104,9 +104,8 @@ App = {
   },
 
   handleWithdraw: function(event) {
-    
-    
     var LDInstance;
+
     var amount = parseFloat($('#amt-withdraw').val());
     // amount *= 10 ** 18;
     
@@ -127,6 +126,48 @@ App = {
         console.log(err.message);
       });
     });
+  },
+
+  updateThreshold: function() {
+
+    var LDInstance;
+
+    App.contracts.LaundererDetector.deployed().then(function(instance) {
+      LDInstance = instance;
+
+      return LDInstance.getThreshold.call();
+    }).then(function(threshold) {
+      $('#get-threshold').text(threshold);
+    }).catch(function(err) {
+      console.log(err.message);
+    });
+  },
+
+  handleThreshold: function(event) {
+    event.preventDefault();
+
+    
+    var LDInstance;
+    var threshold = parseInt($('#amt-threshold').val());
+
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+
+      var account = accounts[0];
+      
+      App.contracts.LaundererDetector.deployed().then(function(instance) {
+        LDInstance = instance;
+        console.log(threshold);
+        return LDInstance.setThreshold(threshold, {from: account});
+      }).then(function(result) {
+        return App.updateThreshold();
+      }).catch(function(err) {
+        console.log(err.message);
+      });
+    });
+
   },
 
   handleHighTransactors: function(event) {

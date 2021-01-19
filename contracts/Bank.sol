@@ -68,7 +68,7 @@ contract LaundererDetector {
     }
 
     function setThreshold(uint256 newthreshold) public onlyBankNegara {
-        threshold = newthreshold;
+        threshold = newthreshold * 10**18;
     }
 
     // function potentialLaunderers() public  {
